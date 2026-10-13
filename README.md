@@ -14,15 +14,14 @@ run `flutter pub get` at the root.
 
 ## Status
 
-| Target | Verified locally | In the CI workflow (written, not yet run) |
+| Target | Verified locally | CI (GitHub Actions, passing) |
 | --- | --- | --- |
 | Linux x64, Dart VM (`dart test`) | ✅ 77 tests | ✅ |
-| Flutter tests on the host (`flutter test`) | ✅ | ✅ Linux, macOS, Windows |
-| Web, dart2js (`dart test -p chrome`) | ✅ 77 tests | ✅ |
+| macOS, Windows, Dart VM (`dart test`) | — | ✅ |
+| Flutter tests (`flutter test`) | ✅ Linux | ✅ Linux, macOS, Windows |
+| Web, dart2js (`dart test -p chrome`) | ✅ 77 tests | ✅ committed and rebuilt module |
 | Flutter web, dart2js and `--wasm` | ✅ example app run in a browser | ✅ build |
-| Android, macOS, Linux arm64 | Rust `cargo check` only | ✅ `flutter build` |
-| iOS, Windows | — | ✅ `flutter build` |
-| Linux desktop app | — (needs `libgtk-3-dev`) | ✅ `flutter build linux` |
+| Android, iOS, macOS, Windows, Linux apps | — | ✅ `flutter build` of the example |
 
 ## Web: does `wasm_ffi` work?
 
