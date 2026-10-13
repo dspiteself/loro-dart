@@ -74,7 +74,7 @@ void main() {
             .toList()
           ..sort((a, b) => a.path.compareTo(b.path));
     for (final f in files) {
-      final text = f.readAsStringSync().trim();
+      final text = f.readAsStringSync().replaceAll('\r\n', '\n').trim();
       if (text.isEmpty) continue;
       (texts[text] ??= []).add(name);
     }
