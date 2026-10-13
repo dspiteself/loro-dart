@@ -1,0 +1,46 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+# Libraries don't commit lockfiles:
+# https://dart.dev/guides/libraries/private-files#pubspec-lock
+pubspec.lock
+pubspec_overrides.yaml
+.flutter-plugins
+.flutter-plugins-dependencies
+**/doc/api/
+coverage/
+*.lcov
+.fvm/
+
+# Rust FFI crate. Cargo.lock stays committed: it pins the native build that
+# the build hook runs on users' machines.
+**/native/target/
+**/*.rs.bk
+
+# Native build artifacts are produced by the build hook, never committed.
+# (The prebuilt web module in packages/loro_crdt/lib/src/web/ is committed.)
+*.so
+*.so.*
+*.dylib
+*.dll
+*.a
+*.lib
+*.o
+*.obj
+*.pdb
+*.exp
+
+# IDEs and OS files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Local tooling
+.claude/

@@ -1,0 +1,5 @@
+main.wasm
+main.wasm.map
+main.mjs
+main.support.js
+loro_crdt_ffi.*

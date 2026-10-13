@@ -1,0 +1,7 @@
+*.wasm binary
+
+# Generated files: collapsed in GitHub diffs and excluded from language stats.
+packages/loro_crdt/lib/src/ffi/*.g.dart linguist-generated=true
+packages/loro_crdt/lib/src/web/* linguist-generated=true
+packages/loro_crdt/native/include/*.h linguist-generated=true
+packages/loro_crdt/native/exports.txt linguist-generated=true

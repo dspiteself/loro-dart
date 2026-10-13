@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  bindings:
+    name: Generated bindings are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: cargo install cbindgen --version 0.29.4 --locked
+      - run: flutter pub get
+      - working-directory: packages/loro_crdt
+        run: dart run tool/generate_bindings.dart --check
+
+  native:
+    name: Tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - name: loro_crdt (dart:ffi, library built by the build hook)
+        working-directory: packages/loro_crdt
+        run: dart test
+      - name: loro_crdt_flutter
+        working-directory: packages/loro_crdt_flutter
+        run: flutter test
+      - name: example app
+        working-directory: packages/loro_crdt_flutter/example
+        run: flutter test
+
+  web:
+    name: Web (wasm_ffi)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 6.0.12
+      - run: flutter pub get
+      # The committed module in lib/src/web is what users get; wasm_ffi does
+      # not check signatures, so test it before anything is rebuilt.
+      - name: Tests in Chrome against the committed module (dart2js)
+        working-directory: packages/loro_crdt
+        run: dart test -p chrome
+      - name: Rebuild the Emscripten module
+        working-directory: packages/loro_crdt
+        run: ./tool/build_web.sh
+      - name: Tests in Chrome against the rebuilt module
+        working-directory: packages/loro_crdt
+        run: dart test -p chrome
+      - name: Flutter web builds
+        working-directory: packages/loro_crdt_flutter/example
+        run: |
+          flutter build web
+          flutter build web --wasm
+
+  apps:
+    name: Example app (${{ matrix.target }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, target: apk }
+          - { os: ubuntu-latest, target: linux }
+          - { os: macos-latest, target: macos }
+          - { os: macos-latest, target: ios }
+          - { os: windows-latest, target: windows }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - if: matrix.target == 'apk'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - if: matrix.target == 'linux'
+        run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev ninja-build
+      - run: flutter pub get
+      - working-directory: packages/loro_crdt_flutter/example
+        run: flutter build ${{ matrix.target }} ${{ matrix.target == 'ios' && '--no-codesign' || '' }}

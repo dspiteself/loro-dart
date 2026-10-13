@@ -1,0 +1,10 @@
+name: loro_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.10.8
+
+workspace:
+  - packages/loro_crdt
+  - packages/loro_crdt_flutter
+  - packages/loro_crdt_flutter/example

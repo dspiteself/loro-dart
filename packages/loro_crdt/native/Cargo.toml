@@ -1,0 +1,24 @@
+[package]
+name = "loro_crdt_ffi"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "C ABI over the loro crate, consumed by the loro_crdt Dart package"
+license = "MIT"
+
+[lib]
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+loro = { version = "=1.16.2", features = ["counter", "jsonpath"] }
+# The `wasm` feature makes Loro's "event" positions (text deltas, events,
+# cursors) UTF-16 based, like loro-crdt in JavaScript and like Dart strings.
+# On non-wasm32-unknown-unknown targets wasm-bindgen compiles to inert stubs.
+loro-internal = { version = "=1.16.2", features = ["wasm"] }
+rustc-hash = "2.1.1"
+serde_json = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

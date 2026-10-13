@@ -1,0 +1,29 @@
+name: loro_crdt_flutter
+description: >-
+  Flutter integration for loro_crdt (Loro CRDTs): bundles the web build and
+  provides a TextEditingController bound to a collaborative LoroText.
+version: 0.1.0
+topics: [crdt, local-first, collaboration, flutter]
+
+environment:
+  sdk: ^3.10.8
+  flutter: ">=3.38.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  loro_crdt: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  assets:
+    - packages/loro_crdt/src/web/loro_crdt_ffi.js
+    - packages/loro_crdt/src/web/loro_crdt_ffi.wasm
