@@ -11,7 +11,8 @@ with full history, time travel and undo.
 | Web (dart2js and dart2wasm) | [`wasm_ffi`](https://pub.dev/packages/wasm_ffi) | Prebuilt Emscripten module in `lib/src/web/` |
 
 Flutter apps should depend on
-[`loro_crdt_flutter`](../loro_crdt_flutter), which re-exports this package,
+[`loro_crdt_flutter`](https://pub.dev/packages/loro_crdt_flutter), which
+re-exports this package,
 bundles the web module as a Flutter asset and adds a `TextEditingController`
 bound to a `LoroText`.
 
@@ -134,6 +135,14 @@ Plain Dart web apps: serve `lib/src/web/loro_crdt_ffi.js` and
 - Native and web memory is freed when Dart objects are garbage collected.
   Call `dispose()` on `LoroDoc`, `UndoManager` and `EphemeralStore` to free
   it earlier.
+
+## Licenses
+
+This package is MIT licensed. The native library it builds, and the prebuilt
+web module it ships, include Loro and other Rust crates under permissive
+licenses (MIT, Apache-2.0, MPL-2.0 for the `im` crates), plus the Emscripten
+runtime on the web. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for
+the full list and texts to include in your app's notices.
 
 ## How it works
 

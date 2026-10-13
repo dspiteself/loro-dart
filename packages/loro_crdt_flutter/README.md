@@ -1,6 +1,6 @@
 # loro_crdt_flutter
 
-Flutter integration for [`loro_crdt`](../loro_crdt), the Dart bindings for
+Flutter integration for [`loro_crdt`](https://pub.dev/packages/loro_crdt), the Dart bindings for
 the [Loro](https://loro.dev) CRDT library. It runs on Android, iOS, macOS,
 Windows, Linux and the web.
 

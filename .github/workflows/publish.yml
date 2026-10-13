@@ -1,0 +1,34 @@
+# Publishes to pub.dev when a release tag is pushed, using pub.dev's
+# automated publishing (GitHub OIDC, no stored secrets). Enable it on each
+# package's pub.dev Admin page with these tag patterns:
+#   loro_crdt:          loro_crdt-v{{version}}
+#   loro_crdt_flutter:  loro_crdt_flutter-v{{version}}
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'loro_crdt-v[0-9]+.[0-9]+.[0-9]+*'
+      - 'loro_crdt_flutter-v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pub.dev
+    permissions:
+      id-token: write # pub.dev authenticates the workflow with this token
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - name: Publish
+        run: |
+          case "$GITHUB_REF_NAME" in
+            loro_crdt_flutter-v*) dir=packages/loro_crdt_flutter ;;
+            loro_crdt-v*)         dir=packages/loro_crdt ;;
+          esac
+          cd "$dir"
+          dart pub publish --force

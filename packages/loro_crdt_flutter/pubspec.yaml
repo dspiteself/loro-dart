@@ -3,7 +3,14 @@ description: >-
   Flutter integration for loro_crdt (Loro CRDTs): bundles the web build and
   provides a TextEditingController bound to a collaborative LoroText.
 version: 0.1.0
-topics: [crdt, local-first, collaboration, flutter]
+repository: https://github.com/dspiteself/loro-dart/tree/main/packages/loro_crdt_flutter
+issue_tracker: https://github.com/dspiteself/loro-dart/issues
+topics: [crdt, local-first, collaboration, flutter, sync]
+screenshots:
+  - description: >-
+      The example app: two peers editing a shared Loro document through
+      LoroTextEditingController.
+    path: screenshots/demo.png
 
 environment:
   sdk: ^3.10.8

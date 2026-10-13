@@ -3,7 +3,9 @@ description: >-
   Dart bindings for Loro, a high-performance CRDT library for local-first,
   collaborative apps. Runs on Android, iOS, macOS, Windows, Linux and the web.
 version: 0.1.0
-topics: [crdt, local-first, collaboration, ffi]
+repository: https://github.com/dspiteself/loro-dart/tree/main/packages/loro_crdt
+issue_tracker: https://github.com/dspiteself/loro-dart/issues
+topics: [crdt, local-first, collaboration, ffi, wasm]
 
 environment:
   sdk: ^3.10.8

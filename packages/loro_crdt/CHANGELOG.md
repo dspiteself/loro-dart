@@ -7,3 +7,5 @@
   `LoroMap`, `LoroList`, `LoroMovableList`, `LoroTree`, `LoroCounter`.
 - Events, local-update subscriptions and streams; `UndoManager`;
   `EphemeralStore`.
+- `THIRD_PARTY_NOTICES.md` lists the licenses of the bundled Rust crates and
+  the Emscripten runtime.

@@ -25,528 +25,1736 @@ external void loro_container_free(Pointer<Void> c);
 
 /// Creates a detached container of type `kind`; insert it into an attached
 /// container to make it part of a document.
-@Native<Pointer<Void> Function(Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_new')
-external Pointer<Void> loro_container_new(int kind, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_new',
+)
+external Pointer<Void> loro_container_new(
+  int kind,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_id')
-external Pointer<Uint8> loro_container_id(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_id',
+)
+external Pointer<Uint8> loro_container_id(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_type')
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_type',
+)
 external int loro_container_type(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_is_attached')
-external int loro_container_is_attached(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_is_attached',
+)
+external int loro_container_is_attached(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns the attached version of a container, or null.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_get_attached')
-external Pointer<Void> loro_container_get_attached(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_get_attached',
+)
+external Pointer<Void> loro_container_get_attached(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_is_deleted')
-external int loro_container_is_deleted(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_is_deleted',
+)
+external int loro_container_is_deleted(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns the document owning an attached container, or null.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_doc')
-external Pointer<Void> loro_container_doc(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_doc',
+)
+external Pointer<Void> loro_container_doc(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_get_value')
-external Pointer<Uint8> loro_container_get_value(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_get_value',
+)
+external Pointer<Uint8> loro_container_get_value(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_container_get_deep_value')
-external Pointer<Uint8> loro_container_get_deep_value(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_container_get_deep_value',
+)
+external Pointer<Uint8> loro_container_get_deep_value(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_insert')
-external void loro_text_insert(Pointer<Void> c, int pos, int unit, Pointer<Uint8> s_ptr, int s_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_insert')
+external void loro_text_insert(
+  Pointer<Void> c,
+  int pos,
+  int unit,
+  Pointer<Uint8> s_ptr,
+  int s_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_delete')
-external void loro_text_delete(Pointer<Void> c, int pos, int len, int unit, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_text_delete')
+external void loro_text_delete(
+  Pointer<Void> c,
+  int pos,
+  int len,
+  int unit,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_slice')
-external Pointer<Uint8> loro_text_slice(Pointer<Void> c, int start, int end, int unit, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_slice')
+external Pointer<Uint8> loro_text_slice(
+  Pointer<Void> c,
+  int start,
+  int end,
+  int unit,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Deletes `len` at `pos`, inserts `s`, and returns the deleted text.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_splice')
-external Pointer<Uint8> loro_text_splice(Pointer<Void> c, int pos, int len, int unit, Pointer<Uint8> s_ptr, int s_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_splice')
+external Pointer<Uint8> loro_text_splice(
+  Pointer<Void> c,
+  int pos,
+  int len,
+  int unit,
+  Pointer<Uint8> s_ptr,
+  int s_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_len')
-external int loro_text_len(Pointer<Void> c, int unit, Pointer<Pointer<Uint8>> err);
+@Native<Uint32 Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_text_len',
+)
+external int loro_text_len(
+  Pointer<Void> c,
+  int unit,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_to_string')
-external Pointer<Uint8> loro_text_to_string(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_text_to_string',
+)
+external Pointer<Uint8> loro_text_to_string(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_push')
-external void loro_text_push(Pointer<Void> c, Pointer<Uint8> s_ptr, int s_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_text_push')
+external void loro_text_push(
+  Pointer<Void> c,
+  Pointer<Uint8> s_ptr,
+  int s_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Replaces the content with `s` using a minimal diff. `timeout_ms < 0`
 /// means no timeout.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Int32, Double, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_update')
-external void loro_text_update(Pointer<Void> c, Pointer<Uint8> s_ptr, int s_len, int by_line, double timeout_ms, int use_refined_diff, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Int32,
+    Double,
+    Int32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_update')
+external void loro_text_update(
+  Pointer<Void> c,
+  Pointer<Uint8> s_ptr,
+  int s_len,
+  int by_line,
+  double timeout_ms,
+  int use_refined_diff,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Uint8>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_mark')
-external void loro_text_mark(Pointer<Void> c, int start, int end, int unit, Pointer<Uint8> key_ptr, int key_len, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_mark')
+external void loro_text_mark(
+  Pointer<Void> c,
+  int start,
+  int end,
+  int unit,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_unmark')
-external void loro_text_unmark(Pointer<Void> c, int start, int end, int unit, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_unmark')
+external void loro_text_unmark(
+  Pointer<Void> c,
+  int start,
+  int end,
+  int unit,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns the rich-text delta (lengths in UTF-16 code units).
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_to_delta')
-external Pointer<Uint8> loro_text_to_delta(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_text_to_delta',
+)
+external Pointer<Uint8> loro_text_to_delta(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_slice_delta')
-external Pointer<Uint8> loro_text_slice_delta(Pointer<Void> c, int start, int end, int unit, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_slice_delta')
+external Pointer<Uint8> loro_text_slice_delta(
+  Pointer<Void> c,
+  int start,
+  int end,
+  int unit,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_apply_delta')
-external void loro_text_apply_delta(Pointer<Void> c, Pointer<Uint8> delta_ptr, int delta_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_text_apply_delta')
+external void loro_text_apply_delta(
+  Pointer<Void> c,
+  Pointer<Uint8> delta_ptr,
+  int delta_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_get_richtext_value')
-external Pointer<Uint8> loro_text_get_richtext_value(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_text_get_richtext_value',
+)
+external Pointer<Uint8> loro_text_get_richtext_value(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `pos` is in UTF-16 code units. Returns `[u8 has][cursor]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_get_cursor')
-external Pointer<Uint8> loro_text_get_cursor(Pointer<Void> c, int pos, int side, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Void>, Uint32, Int32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_text_get_cursor')
+external Pointer<Uint8> loro_text_get_cursor(
+  Pointer<Void> c,
+  int pos,
+  int side,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns the converted position, or -1 if `index` is out of bounds.
-@Native<Int32 Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_convert_pos')
-external int loro_text_convert_pos(Pointer<Void> c, int index, int from, int to, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Uint32, Uint32, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_text_convert_pos')
+external int loro_text_convert_pos(
+  Pointer<Void> c,
+  int index,
+  int from,
+  int to,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 has][str peer]` for the peer that inserted the character.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_text_get_editor_at')
-external Pointer<Uint8> loro_text_get_editor_at(Pointer<Void> c, int pos, int unit, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_text_get_editor_at')
+external Pointer<Uint8> loro_text_get_editor_at(
+  Pointer<Void> c,
+  int pos,
+  int unit,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_insert')
-external void loro_map_insert(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_map_insert')
+external void loro_map_insert(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_delete')
-external void loro_map_delete(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_map_delete')
+external void loro_map_delete(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_clear')
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_map_clear',
+)
 external void loro_map_clear(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
 
 /// Returns a value-or-container, or the absent tag.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_get')
-external Pointer<Uint8> loro_map_get(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_map_get')
+external Pointer<Uint8> loro_map_get(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_len')
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_map_len',
+)
 external int loro_map_len(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
 
 /// Returns the keys in sorted order: `[u32 n](str)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_keys')
-external Pointer<Uint8> loro_map_keys(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_map_keys',
+)
+external Pointer<Uint8> loro_map_keys(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u32 n]([str key][value-or-container])*` sorted by key.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_entries')
-external Pointer<Uint8> loro_map_entries(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_map_entries',
+)
+external Pointer<Uint8> loro_map_entries(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_insert_container')
-external Pointer<Void> loro_map_insert_container(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, Pointer<Void> child, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Void>,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_map_insert_container')
+external Pointer<Void> loro_map_insert_container(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Void> child,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Gets or creates a child container that merges with concurrently created
 /// containers under the same key on other peers.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_ensure_mergeable')
-external Pointer<Void> loro_map_ensure_mergeable(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, int kind, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_map_ensure_mergeable')
+external Pointer<Void> loro_map_ensure_mergeable(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  int kind,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_map_get_last_editor')
-external Pointer<Uint8> loro_map_get_last_editor(Pointer<Void> c, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_map_get_last_editor')
+external Pointer<Uint8> loro_map_get_last_editor(
+  Pointer<Void> c,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_insert')
-external void loro_list_insert(Pointer<Void> c, int pos, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_list_insert')
+external void loro_list_insert(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_push')
-external void loro_list_push(Pointer<Void> c, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_list_push')
+external void loro_list_push(
+  Pointer<Void> c,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_delete')
-external void loro_list_delete(Pointer<Void> c, int pos, int len, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_list_delete',
+)
+external void loro_list_delete(
+  Pointer<Void> c,
+  int pos,
+  int len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Removes the last element and returns it (absent tag when empty).
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_pop')
-external Pointer<Uint8> loro_list_pop(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_list_pop',
+)
+external Pointer<Uint8> loro_list_pop(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_get')
-external Pointer<Uint8> loro_list_get(Pointer<Void> c, int pos, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_list_get')
+external Pointer<Uint8> loro_list_get(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_len')
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_list_len',
+)
 external int loro_list_len(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_clear')
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_list_clear',
+)
 external void loro_list_clear(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
 
 /// Returns `[u32 n](value-or-container)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_items')
-external Pointer<Uint8> loro_list_items(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_list_items',
+)
+external Pointer<Uint8> loro_list_items(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Uint32, Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_insert_container')
-external Pointer<Void> loro_list_insert_container(Pointer<Void> c, int pos, Pointer<Void> child, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Uint32,
+    Pointer<Void>,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_list_insert_container')
+external Pointer<Void> loro_list_insert_container(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Void> child,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_push_container')
-external Pointer<Void> loro_list_push_container(Pointer<Void> c, Pointer<Void> child, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(Pointer<Void>, Pointer<Void>, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_list_push_container')
+external Pointer<Void> loro_list_push_container(
+  Pointer<Void> c,
+  Pointer<Void> child,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 has][cursor]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_get_cursor')
-external Pointer<Uint8> loro_list_get_cursor(Pointer<Void> c, int pos, int side, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Void>, Uint32, Int32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_list_get_cursor')
+external Pointer<Uint8> loro_list_get_cursor(
+  Pointer<Void> c,
+  int pos,
+  int side,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 has][id]` of the op that inserted the element (List only).
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_list_get_id_at')
-external Pointer<Uint8> loro_list_get_id_at(Pointer<Void> c, int pos, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_list_get_id_at')
+external Pointer<Uint8> loro_list_get_id_at(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_movable_list_set')
-external void loro_movable_list_set(Pointer<Void> c, int pos, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_movable_list_set')
+external void loro_movable_list_set(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Uint32, Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_movable_list_set_container')
-external Pointer<Void> loro_movable_list_set_container(Pointer<Void> c, int pos, Pointer<Void> child, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Uint32,
+    Pointer<Void>,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_movable_list_set_container')
+external Pointer<Void> loro_movable_list_set_container(
+  Pointer<Void> c,
+  int pos,
+  Pointer<Void> child,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_movable_list_move')
-external void loro_movable_list_move(Pointer<Void> c, int from, int to, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_movable_list_move',
+)
+external void loro_movable_list_move(
+  Pointer<Void> c,
+  int from,
+  int to,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `which`: 0 creator, 1 last mover, 2 last editor. Returns `[u8 has][peer]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_movable_list_peer_at')
-external Pointer<Uint8> loro_movable_list_peer_at(Pointer<Void> c, int pos, int which, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_movable_list_peer_at')
+external Pointer<Uint8> loro_movable_list_peer_at(
+  Pointer<Void> c,
+  int pos,
+  int which,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `args`: `[u8 has][tree id parent]`. Returns the new node id.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_create')
-external Pointer<Uint8> loro_tree_create(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_create')
+external Pointer<Uint8> loro_tree_create(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Like `loro_tree_create`, inserting at `index` among the siblings.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_create_at')
-external Pointer<Uint8> loro_tree_create_at(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, int index, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_create_at')
+external Pointer<Uint8> loro_tree_create_at(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  int index,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `args`: `[tree id target][u8 has][tree id parent]`. `index < 0` appends.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_move')
-external void loro_tree_move(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, int index, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Int32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_move')
+external void loro_tree_move(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  int index,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `args`: `[tree id target][tree id sibling]`.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_move_beside')
-external void loro_tree_move_beside(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, int after, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Int32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_move_beside')
+external void loro_tree_move_beside(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  int after,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_delete')
-external void loro_tree_delete(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_tree_delete')
+external void loro_tree_delete(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_get_meta')
-external Pointer<Void> loro_tree_get_meta(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_get_meta')
+external Pointer<Void> loro_tree_get_meta(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 exists][tree parent]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_parent')
-external Pointer<Uint8> loro_tree_parent(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_parent')
+external Pointer<Uint8> loro_tree_parent(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `args`: `[u8 has][tree id parent]`. Returns `[u8 has][u32 n](tree id)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_children')
-external Pointer<Uint8> loro_tree_children(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_children')
+external Pointer<Uint8> loro_tree_children(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_children_num')
-external int loro_tree_children_num(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_tree_children_num')
+external int loro_tree_children_num(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_contains')
-external int loro_tree_contains(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_tree_contains')
+external int loro_tree_contains(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_is_node_deleted')
-external int loro_tree_is_node_deleted(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_tree_is_node_deleted')
+external int loro_tree_is_node_deleted(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `which`: 0 all nodes, 1 roots. Returns `[u32 n](tree id)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_node_ids')
-external Pointer<Uint8> loro_tree_node_ids(Pointer<Void> c, int which, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_tree_node_ids')
+external Pointer<Uint8> loro_tree_node_ids(
+  Pointer<Void> c,
+  int which,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u32 n]([tree id][tree parent][str fractional index][u32 index])*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_get_nodes')
-external Pointer<Uint8> loro_tree_get_nodes(Pointer<Void> c, int with_deleted, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_tree_get_nodes',
+)
+external Pointer<Uint8> loro_tree_get_nodes(
+  Pointer<Void> c,
+  int with_deleted,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_fractional_index')
-external Pointer<Uint8> loro_tree_fractional_index(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_fractional_index')
+external Pointer<Uint8> loro_tree_fractional_index(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_get_last_move_id')
-external Pointer<Uint8> loro_tree_get_last_move_id(Pointer<Void> c, Pointer<Uint8> args_ptr, int args_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_tree_get_last_move_id')
+external Pointer<Uint8> loro_tree_get_last_move_id(
+  Pointer<Void> c,
+  Pointer<Uint8> args_ptr,
+  int args_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `jitter < 0` disables fractional indexes.
-@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_set_fractional_index')
-external void loro_tree_set_fractional_index(Pointer<Void> c, int jitter, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_tree_set_fractional_index',
+)
+external void loro_tree_set_fractional_index(
+  Pointer<Void> c,
+  int jitter,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_tree_is_fractional_index_enabled')
-external int loro_tree_is_fractional_index_enabled(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_tree_is_fractional_index_enabled',
+)
+external int loro_tree_is_fractional_index_enabled(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(symbol: 'loro_counter_increment')
-external void loro_counter_increment(Pointer<Void> c, double value, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_counter_increment',
+)
+external void loro_counter_increment(
+  Pointer<Void> c,
+  double value,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Double Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_counter_value')
-external double loro_counter_value(Pointer<Void> c, Pointer<Pointer<Uint8>> err);
+@Native<Double Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_counter_value',
+)
+external double loro_counter_value(
+  Pointer<Void> c,
+  Pointer<Pointer<Uint8>> err,
+);
 
 @Native<Pointer<Void> Function(Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_new')
 external Pointer<Void> loro_doc_new(Pointer<Pointer<Uint8>> err);
 
-@Native<Pointer<Void> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_from_snapshot')
-external Pointer<Void> loro_doc_from_snapshot(Pointer<Uint8> data_ptr, int data_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_from_snapshot')
+external Pointer<Void> loro_doc_from_snapshot(
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 @Native<Void Function(Pointer<Void>)>(symbol: 'loro_doc_free')
 external void loro_doc_free(Pointer<Void> doc);
 
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_fork')
-external Pointer<Void> loro_doc_fork(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_fork',
+)
+external Pointer<Void> loro_doc_fork(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `frontiers`: encoded frontiers.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_fork_at')
-external Pointer<Void> loro_doc_fork_at(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_fork_at')
+external Pointer<Void> loro_doc_fork_at(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Pointer<Uint8>>)>(symbol: 'loro_version')
+@Native<Pointer<Uint8> Function(Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_version',
+)
 external Pointer<Uint8> loro_version(Pointer<Pointer<Uint8>> err);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_peer_id')
-external Pointer<Uint8> loro_doc_peer_id(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_peer_id',
+)
+external Pointer<Uint8> loro_doc_peer_id(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_peer_id')
-external void loro_doc_set_peer_id(Pointer<Void> d, Pointer<Uint8> peer_ptr, int peer_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_set_peer_id')
+external void loro_doc_set_peer_id(
+  Pointer<Void> d,
+  Pointer<Uint8> peer_ptr,
+  int peer_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_record_timestamp')
-external void loro_doc_set_record_timestamp(Pointer<Void> d, int record, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_set_record_timestamp',
+)
+external void loro_doc_set_record_timestamp(
+  Pointer<Void> d,
+  int record,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_change_merge_interval')
-external void loro_doc_set_change_merge_interval(Pointer<Void> d, double seconds, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_set_change_merge_interval',
+)
+external void loro_doc_set_change_merge_interval(
+  Pointer<Void> d,
+  double seconds,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_detached_editing')
-external void loro_doc_set_detached_editing(Pointer<Void> d, int enable, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_set_detached_editing',
+)
+external void loro_doc_set_detached_editing(
+  Pointer<Void> d,
+  int enable,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_is_detached_editing_enabled')
-external int loro_doc_is_detached_editing_enabled(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_is_detached_editing_enabled',
+)
+external int loro_doc_is_detached_editing_enabled(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `config`: `[u32 n]([str key][u8 expand])*[u8 has default][u8 expand]`,
 /// expand codes 0 before, 1 after, 2 both, 3 none.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_config_text_style')
-external void loro_doc_config_text_style(Pointer<Void> d, Pointer<Uint8> config_ptr, int config_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_config_text_style')
+external void loro_doc_config_text_style(
+  Pointer<Void> d,
+  Pointer<Uint8> config_ptr,
+  int config_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_hide_empty_root_containers')
-external void loro_doc_set_hide_empty_root_containers(Pointer<Void> d, int hide, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Int32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_set_hide_empty_root_containers',
+)
+external void loro_doc_set_hide_empty_root_containers(
+  Pointer<Void> d,
+  int hide,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `kind`: container type code (see codec.rs).
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_root')
-external Pointer<Void> loro_doc_get_root(Pointer<Void> d, Pointer<Uint8> name_ptr, int name_len, int kind, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_root')
+external Pointer<Void> loro_doc_get_root(
+  Pointer<Void> d,
+  Pointer<Uint8> name_ptr,
+  int name_len,
+  int kind,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns null if the container does not exist.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_container')
-external Pointer<Void> loro_doc_get_container(Pointer<Void> d, Pointer<Uint8> cid_ptr, int cid_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_container')
+external Pointer<Void> loro_doc_get_container(
+  Pointer<Void> d,
+  Pointer<Uint8> cid_ptr,
+  int cid_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_has_container')
-external int loro_doc_has_container(Pointer<Void> d, Pointer<Uint8> cid_ptr, int cid_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_has_container')
+external int loro_doc_has_container(
+  Pointer<Void> d,
+  Pointer<Uint8> cid_ptr,
+  int cid_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_delete_root_container')
-external void loro_doc_delete_root_container(Pointer<Void> d, Pointer<Uint8> cid_ptr, int cid_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_delete_root_container')
+external void loro_doc_delete_root_container(
+  Pointer<Void> d,
+  Pointer<Uint8> cid_ptr,
+  int cid_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 has][u32 n]([str container][index])*` from the root down.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_path_to_container')
-external Pointer<Uint8> loro_doc_get_path_to_container(Pointer<Void> d, Pointer<Uint8> cid_ptr, int cid_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_path_to_container')
+external Pointer<Uint8> loro_doc_get_path_to_container(
+  Pointer<Void> d,
+  Pointer<Uint8> cid_ptr,
+  int cid_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns a value-or-container, or the absent tag.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_by_path')
-external Pointer<Uint8> loro_doc_get_by_path(Pointer<Void> d, Pointer<Uint8> path_ptr, int path_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_by_path')
+external Pointer<Uint8> loro_doc_get_by_path(
+  Pointer<Void> d,
+  Pointer<Uint8> path_ptr,
+  int path_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u32 n](value-or-container)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_jsonpath')
-external Pointer<Uint8> loro_doc_jsonpath(Pointer<Void> d, Pointer<Uint8> path_ptr, int path_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_jsonpath')
+external Pointer<Uint8> loro_doc_jsonpath(
+  Pointer<Void> d,
+  Pointer<Uint8> path_ptr,
+  int path_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_value')
-external Pointer<Uint8> loro_doc_get_value(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_get_value',
+)
+external Pointer<Uint8> loro_doc_get_value(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_deep_value')
-external Pointer<Uint8> loro_doc_get_deep_value(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_get_deep_value',
+)
+external Pointer<Uint8> loro_doc_get_deep_value(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_deep_value_with_id')
-external Pointer<Uint8> loro_doc_get_deep_value_with_id(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_get_deep_value_with_id',
+)
+external Pointer<Uint8> loro_doc_get_deep_value_with_id(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_commit')
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_commit',
+)
 external void loro_doc_commit(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
 /// `options`: `[opt str origin][opt str message][u8 has][f64 timestamp][u8 immediate_renew]`.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_commit_with')
-external void loro_doc_commit_with(Pointer<Void> d, Pointer<Uint8> options_ptr, int options_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_commit_with')
+external void loro_doc_commit_with(
+  Pointer<Void> d,
+  Pointer<Uint8> options_ptr,
+  int options_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_next_commit_message')
-external void loro_doc_set_next_commit_message(Pointer<Void> d, Pointer<Uint8> msg_ptr, int msg_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_set_next_commit_message')
+external void loro_doc_set_next_commit_message(
+  Pointer<Void> d,
+  Pointer<Uint8> msg_ptr,
+  int msg_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_next_commit_origin')
-external void loro_doc_set_next_commit_origin(Pointer<Void> d, Pointer<Uint8> origin_ptr, int origin_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_set_next_commit_origin')
+external void loro_doc_set_next_commit_origin(
+  Pointer<Void> d,
+  Pointer<Uint8> origin_ptr,
+  int origin_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_set_next_commit_timestamp')
-external void loro_doc_set_next_commit_timestamp(Pointer<Void> d, double timestamp, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_set_next_commit_timestamp',
+)
+external void loro_doc_set_next_commit_timestamp(
+  Pointer<Void> d,
+  double timestamp,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_clear_next_commit_options')
-external void loro_doc_clear_next_commit_options(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_clear_next_commit_options',
+)
+external void loro_doc_clear_next_commit_options(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_pending_txn_len')
-external int loro_doc_get_pending_txn_len(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_get_pending_txn_len',
+)
+external int loro_doc_get_pending_txn_len(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_import')
-external Pointer<Uint8> loro_doc_import(Pointer<Void> d, Pointer<Uint8> data_ptr, int data_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_import')
+external Pointer<Uint8> loro_doc_import(
+  Pointer<Void> d,
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_import_with')
-external Pointer<Uint8> loro_doc_import_with(Pointer<Void> d, Pointer<Uint8> data_ptr, int data_len, Pointer<Uint8> origin_ptr, int origin_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_import_with')
+external Pointer<Uint8> loro_doc_import_with(
+  Pointer<Void> d,
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Uint8> origin_ptr,
+  int origin_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `batch`: `[u32 n]([bytes])*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_import_batch')
-external Pointer<Uint8> loro_doc_import_batch(Pointer<Void> d, Pointer<Uint8> batch_ptr, int batch_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_import_batch')
+external Pointer<Uint8> loro_doc_import_batch(
+  Pointer<Void> d,
+  Pointer<Uint8> batch_ptr,
+  int batch_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_import_json_updates')
-external Pointer<Uint8> loro_doc_import_json_updates(Pointer<Void> d, Pointer<Uint8> json_ptr, int json_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_import_json_updates')
+external Pointer<Uint8> loro_doc_import_json_updates(
+  Pointer<Void> d,
+  Pointer<Uint8> json_ptr,
+  int json_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `range`: `[vv start][vv end]`. Returns the JSON string.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_export_json_updates')
-external Pointer<Uint8> loro_doc_export_json_updates(Pointer<Void> d, Pointer<Uint8> range_ptr, int range_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_export_json_updates')
+external Pointer<Uint8> loro_doc_export_json_updates(
+  Pointer<Void> d,
+  Pointer<Uint8> range_ptr,
+  int range_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `mode`: 0 snapshot, 1 updates `[vv from]`, 2 updates in range
 /// `[u32 n]([peer][i32 start][i32 end])*`, 3 shallow snapshot `[frontiers]`,
 /// 4 state only `[u8 has][frontiers]`, 5 snapshot at `[frontiers]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_export')
-external Pointer<Uint8> loro_doc_export(Pointer<Void> d, int mode, Pointer<Uint8> arg_ptr, int arg_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_export')
+external Pointer<Uint8> loro_doc_export(
+  Pointer<Void> d,
+  int mode,
+  Pointer<Uint8> arg_ptr,
+  int arg_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[str mode][vv partial start][vv partial end][f64 start ts]
 /// [frontiers start][f64 end ts][u32 change count]`.
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_decode_import_blob_meta')
-external Pointer<Uint8> loro_decode_import_blob_meta(Pointer<Uint8> data_ptr, int data_len, int check_checksum, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Uint8>,
+    Uint32,
+    Int32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_decode_import_blob_meta')
+external Pointer<Uint8> loro_decode_import_blob_meta(
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  int check_checksum,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_oplog_vv')
-external Pointer<Uint8> loro_doc_oplog_vv(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_oplog_vv',
+)
+external Pointer<Uint8> loro_doc_oplog_vv(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_state_vv')
-external Pointer<Uint8> loro_doc_state_vv(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_state_vv',
+)
+external Pointer<Uint8> loro_doc_state_vv(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_shallow_since_vv')
-external Pointer<Uint8> loro_doc_shallow_since_vv(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_shallow_since_vv',
+)
+external Pointer<Uint8> loro_doc_shallow_since_vv(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_oplog_frontiers')
-external Pointer<Uint8> loro_doc_oplog_frontiers(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_oplog_frontiers',
+)
+external Pointer<Uint8> loro_doc_oplog_frontiers(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_state_frontiers')
-external Pointer<Uint8> loro_doc_state_frontiers(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_state_frontiers',
+)
+external Pointer<Uint8> loro_doc_state_frontiers(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_shallow_since_frontiers')
-external Pointer<Uint8> loro_doc_shallow_since_frontiers(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_shallow_since_frontiers',
+)
+external Pointer<Uint8> loro_doc_shallow_since_frontiers(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u8 has][vv]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_frontiers_to_vv')
-external Pointer<Uint8> loro_doc_frontiers_to_vv(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_frontiers_to_vv')
+external Pointer<Uint8> loro_doc_frontiers_to_vv(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_vv_to_frontiers')
-external Pointer<Uint8> loro_doc_vv_to_frontiers(Pointer<Void> d, Pointer<Uint8> vv_ptr, int vv_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_vv_to_frontiers')
+external Pointer<Uint8> loro_doc_vv_to_frontiers(
+  Pointer<Void> d,
+  Pointer<Uint8> vv_ptr,
+  int vv_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_minimize_frontiers')
-external Pointer<Uint8> loro_doc_minimize_frontiers(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_minimize_frontiers')
+external Pointer<Uint8> loro_doc_minimize_frontiers(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_cmp_with_frontiers')
-external int loro_doc_cmp_with_frontiers(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_cmp_with_frontiers')
+external int loro_doc_cmp_with_frontiers(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `pair`: `[frontiers a][frontiers b]`. Returns -1, 0, 1, or 2 if concurrent.
-@Native<Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_cmp_frontiers')
-external int loro_doc_cmp_frontiers(Pointer<Void> d, Pointer<Uint8> pair_ptr, int pair_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Int32 Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_cmp_frontiers')
+external int loro_doc_cmp_frontiers(
+  Pointer<Void> d,
+  Pointer<Uint8> pair_ptr,
+  int pair_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_len_ops')
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_len_ops',
+)
 external int loro_doc_len_ops(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_len_changes')
+@Native<Uint32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_len_changes',
+)
 external int loro_doc_len_changes(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_is_shallow')
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_is_shallow',
+)
 external int loro_doc_is_shallow(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_checkout')
-external void loro_doc_checkout(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_checkout')
+external void loro_doc_checkout(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_checkout_to_latest')
-external void loro_doc_checkout_to_latest(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_checkout_to_latest',
+)
+external void loro_doc_checkout_to_latest(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_attach')
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_attach',
+)
 external void loro_doc_attach(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_detach')
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_detach',
+)
 external void loro_doc_detach(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_is_detached')
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_is_detached',
+)
 external int loro_doc_is_detached(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_revert_to')
-external void loro_doc_revert_to(Pointer<Void> d, Pointer<Uint8> frontiers_ptr, int frontiers_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_doc_revert_to')
+external void loro_doc_revert_to(
+  Pointer<Void> d,
+  Pointer<Uint8> frontiers_ptr,
+  int frontiers_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `id`: encoded id. Returns `[u8 has][change meta]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_change')
-external Pointer<Uint8> loro_doc_get_change(Pointer<Void> d, Pointer<Uint8> id_ptr, int id_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_change')
+external Pointer<Uint8> loro_doc_get_change(
+  Pointer<Void> d,
+  Pointer<Uint8> id_ptr,
+  int id_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `ids`: `[u32 n](id)*`. Returns every ancestor change (including the
 /// changes containing `ids`), newest first: `[u32 n](change meta)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_change_ancestors')
-external Pointer<Uint8> loro_doc_change_ancestors(Pointer<Void> d, Pointer<Uint8> ids_ptr, int ids_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_change_ancestors')
+external Pointer<Uint8> loro_doc_change_ancestors(
+  Pointer<Void> d,
+  Pointer<Uint8> ids_ptr,
+  int ids_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `id`: encoded id. Returns `[u32 n](str container id)*`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_changed_containers_in')
-external Pointer<Uint8> loro_doc_get_changed_containers_in(Pointer<Void> d, Pointer<Uint8> id_ptr, int id_len, int len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_changed_containers_in')
+external Pointer<Uint8> loro_doc_get_changed_containers_in(
+  Pointer<Void> d,
+  Pointer<Uint8> id_ptr,
+  int id_len,
+  int len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `cursor`: bytes from `Cursor::encode`. Returns
 /// `[u8 has update][cursor]?[u32 pos][i32 side]`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_get_cursor_pos')
-external Pointer<Uint8> loro_doc_get_cursor_pos(Pointer<Void> d, Pointer<Uint8> cursor_ptr, int cursor_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_get_cursor_pos')
+external Pointer<Uint8> loro_doc_get_cursor_pos(
+  Pointer<Void> d,
+  Pointer<Uint8> cursor_ptr,
+  int cursor_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Decodes `Cursor::encode` bytes into `[cursor]` (see `Writer::cursor`).
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_cursor_decode')
-external Pointer<Uint8> loro_cursor_decode(Pointer<Uint8> cursor_ptr, int cursor_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_cursor_decode')
+external Pointer<Uint8> loro_cursor_decode(
+  Pointer<Uint8> cursor_ptr,
+  int cursor_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_compact_change_store')
-external void loro_doc_compact_change_store(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_compact_change_store',
+)
+external void loro_doc_compact_change_store(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_free_history_cache')
-external void loro_doc_free_history_cache(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_free_history_cache',
+)
+external void loro_doc_free_history_cache(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_free_diff_calculator')
-external void loro_doc_free_diff_calculator(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_free_diff_calculator',
+)
+external void loro_doc_free_diff_calculator(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_has_history_cache')
-external int loro_doc_has_history_cache(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_has_history_cache',
+)
+external int loro_doc_has_history_cache(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_check_state_correctness')
-external void loro_doc_check_state_correctness(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_check_state_correctness',
+)
+external void loro_doc_check_state_correctness(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_vv_encode')
-external Pointer<Uint8> loro_vv_encode(Pointer<Uint8> vv_ptr, int vv_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_vv_encode')
+external Pointer<Uint8> loro_vv_encode(
+  Pointer<Uint8> vv_ptr,
+  int vv_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_vv_decode')
-external Pointer<Uint8> loro_vv_decode(Pointer<Uint8> data_ptr, int data_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_vv_decode')
+external Pointer<Uint8> loro_vv_decode(
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_frontiers_encode')
-external Pointer<Uint8> loro_frontiers_encode(Pointer<Uint8> f_ptr, int f_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_frontiers_encode')
+external Pointer<Uint8> loro_frontiers_encode(
+  Pointer<Uint8> f_ptr,
+  int f_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_frontiers_decode')
-external Pointer<Uint8> loro_frontiers_decode(Pointer<Uint8> data_ptr, int data_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_frontiers_decode')
+external Pointer<Uint8> loro_frontiers_decode(
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `timeout_ms`: entries not updated for this long expire.
-@Native<Pointer<Void> Function(Double, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_new')
-external Pointer<Void> loro_ephemeral_new(double timeout_ms, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Double, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_new',
+)
+external Pointer<Void> loro_ephemeral_new(
+  double timeout_ms,
+  Pointer<Pointer<Uint8>> err,
+);
 
 @Native<Void Function(Pointer<Void>)>(symbol: 'loro_ephemeral_free')
 external void loro_ephemeral_free(Pointer<Void> e);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_set')
-external void loro_ephemeral_set(Pointer<Void> e, Pointer<Uint8> key_ptr, int key_len, Pointer<Uint8> value_ptr, int value_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_ephemeral_set')
+external void loro_ephemeral_set(
+  Pointer<Void> e,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Uint8> value_ptr,
+  int value_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns a value or the absent tag.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_get')
-external Pointer<Uint8> loro_ephemeral_get(Pointer<Void> e, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_ephemeral_get')
+external Pointer<Uint8> loro_ephemeral_get(
+  Pointer<Void> e,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_delete')
-external void loro_ephemeral_delete(Pointer<Void> e, Pointer<Uint8> key_ptr, int key_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_ephemeral_delete')
+external void loro_ephemeral_delete(
+  Pointer<Void> e,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_keys')
-external Pointer<Uint8> loro_ephemeral_keys(Pointer<Void> e, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_keys',
+)
+external Pointer<Uint8> loro_ephemeral_keys(
+  Pointer<Void> e,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns a map value of every live entry.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_get_all_states')
-external Pointer<Uint8> loro_ephemeral_get_all_states(Pointer<Void> e, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_get_all_states',
+)
+external Pointer<Uint8> loro_ephemeral_get_all_states(
+  Pointer<Void> e,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Encodes every entry if `all != 0`, otherwise only `key`.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Int32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_encode')
-external Pointer<Uint8> loro_ephemeral_encode(Pointer<Void> e, Pointer<Uint8> key_ptr, int key_len, int all, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Uint8> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Int32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_ephemeral_encode')
+external Pointer<Uint8> loro_ephemeral_encode(
+  Pointer<Void> e,
+  Pointer<Uint8> key_ptr,
+  int key_len,
+  int all,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_apply')
-external void loro_ephemeral_apply(Pointer<Void> e, Pointer<Uint8> data_ptr, int data_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_ephemeral_apply')
+external void loro_ephemeral_apply(
+  Pointer<Void> e,
+  Pointer<Uint8> data_ptr,
+  int data_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_remove_outdated')
-external void loro_ephemeral_remove_outdated(Pointer<Void> e, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_remove_outdated',
+)
+external void loro_ephemeral_remove_outdated(
+  Pointer<Void> e,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Number of queued events across all subscriptions.
 @Native<Uint32 Function()>(symbol: 'loro_events_pending')
 external int loro_events_pending();
 
 /// Pops the oldest queued event of `sub` as an owned buffer, or null.
-@Native<Pointer<Uint8> Function(Pointer<Void>)>(symbol: 'loro_subscription_poll')
+@Native<Pointer<Uint8> Function(Pointer<Void>)>(
+  symbol: 'loro_subscription_poll',
+)
 external Pointer<Uint8> loro_subscription_poll(Pointer<Void> sub);
 
 /// Unsubscribes and discards any queued events.
@@ -554,77 +1762,177 @@ external Pointer<Uint8> loro_subscription_poll(Pointer<Void> sub);
 external void loro_subscription_free(Pointer<Void> sub);
 
 /// Subscribes to every change of the document.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_subscribe_root')
-external Pointer<Void> loro_doc_subscribe_root(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_subscribe_root',
+)
+external Pointer<Void> loro_doc_subscribe_root(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Subscribes to changes of one container (and its descendants).
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_subscribe')
-external Pointer<Void> loro_doc_subscribe(Pointer<Void> d, Pointer<Uint8> cid_ptr, int cid_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_subscribe')
+external Pointer<Void> loro_doc_subscribe(
+  Pointer<Void> d,
+  Pointer<Uint8> cid_ptr,
+  int cid_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Queues `[bytes update]` for every local commit, to send to other peers.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_subscribe_local_update')
-external Pointer<Void> loro_doc_subscribe_local_update(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_subscribe_local_update',
+)
+external Pointer<Void> loro_doc_subscribe_local_update(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `pair`: `[frontiers from][frontiers to]`.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_diff')
-external Pointer<Void> loro_doc_diff(Pointer<Void> d, Pointer<Uint8> pair_ptr, int pair_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Pointer<Void> Function(
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Uint32,
+    Pointer<Pointer<Uint8>>,
+  )
+>(symbol: 'loro_doc_diff')
+external Pointer<Void> loro_doc_diff(
+  Pointer<Void> d,
+  Pointer<Uint8> pair_ptr,
+  int pair_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_doc_apply_diff')
-external void loro_doc_apply_diff(Pointer<Void> d, Pointer<Void> batch, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_doc_apply_diff',
+)
+external void loro_doc_apply_diff(
+  Pointer<Void> d,
+  Pointer<Void> batch,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Returns `[u32 n]([str container][diff])*` in application order.
-@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_diff_batch_entries')
-external Pointer<Uint8> loro_diff_batch_entries(Pointer<Void> batch, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Uint8> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_diff_batch_entries',
+)
+external Pointer<Uint8> loro_diff_batch_entries(
+  Pointer<Void> batch,
+  Pointer<Pointer<Uint8>> err,
+);
 
 @Native<Void Function(Pointer<Void>)>(symbol: 'loro_diff_batch_free')
 external void loro_diff_batch_free(Pointer<Void> batch);
 
 /// Queues `[u8 by][keys added][keys updated][keys removed]` with `by` 0
 /// local, 1 import, 2 timeout.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_subscribe')
-external Pointer<Void> loro_ephemeral_subscribe(Pointer<Void> e, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_subscribe',
+)
+external Pointer<Void> loro_ephemeral_subscribe(
+  Pointer<Void> e,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Queues `[bytes update]` for every local change, to send to other peers.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_ephemeral_subscribe_local_updates')
-external Pointer<Void> loro_ephemeral_subscribe_local_updates(Pointer<Void> e, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_ephemeral_subscribe_local_updates',
+)
+external Pointer<Void> loro_ephemeral_subscribe_local_updates(
+  Pointer<Void> e,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Tracks local changes of `doc` for undo/redo. Remote changes are never
 /// undone, but undo steps are transformed so they still apply on top of them.
-@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_new')
-external Pointer<Void> loro_undo_new(Pointer<Void> d, Pointer<Pointer<Uint8>> err);
+@Native<Pointer<Void> Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_new',
+)
+external Pointer<Void> loro_undo_new(
+  Pointer<Void> d,
+  Pointer<Pointer<Uint8>> err,
+);
 
 @Native<Void Function(Pointer<Void>)>(symbol: 'loro_undo_free')
 external void loro_undo_free(Pointer<Void> u);
 
 /// Returns 1 if a step was undone.
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_undo')
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_undo',
+)
 external int loro_undo_undo(Pointer<Void> u, Pointer<Pointer<Uint8>> err);
 
 /// Returns 1 if a step was redone.
-@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_redo')
+@Native<Int32 Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_redo',
+)
 external int loro_undo_redo(Pointer<Void> u, Pointer<Pointer<Uint8>> err);
 
 /// `which`: 0 can undo, 1 can redo, 2 undo count, 3 redo count, 4 is paused.
-@Native<Uint32 Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_query')
-external int loro_undo_query(Pointer<Void> u, int which, Pointer<Pointer<Uint8>> err);
+@Native<Uint32 Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_query',
+)
+external int loro_undo_query(
+  Pointer<Void> u,
+  int which,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_record_new_checkpoint')
-external void loro_undo_record_new_checkpoint(Pointer<Void> u, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_record_new_checkpoint',
+)
+external void loro_undo_record_new_checkpoint(
+  Pointer<Void> u,
+  Pointer<Pointer<Uint8>> err,
+);
 
-@Native<Void Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_set_max_undo_steps')
-external void loro_undo_set_max_undo_steps(Pointer<Void> u, int steps, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_set_max_undo_steps',
+)
+external void loro_undo_set_max_undo_steps(
+  Pointer<Void> u,
+  int steps,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Local changes closer together than `ms` are merged into one undo step.
-@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_set_merge_interval')
-external void loro_undo_set_merge_interval(Pointer<Void> u, double ms, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Double, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_set_merge_interval',
+)
+external void loro_undo_set_merge_interval(
+  Pointer<Void> u,
+  double ms,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Commits whose origin starts with `prefix` are not recorded.
-@Native<Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_add_exclude_origin_prefix')
-external void loro_undo_add_exclude_origin_prefix(Pointer<Void> u, Pointer<Uint8> prefix_ptr, int prefix_len, Pointer<Pointer<Uint8>> err);
+@Native<
+  Void Function(Pointer<Void>, Pointer<Uint8>, Uint32, Pointer<Pointer<Uint8>>)
+>(symbol: 'loro_undo_add_exclude_origin_prefix')
+external void loro_undo_add_exclude_origin_prefix(
+  Pointer<Void> u,
+  Pointer<Uint8> prefix_ptr,
+  int prefix_len,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// `op`: 0 clear, 1 group start, 2 group end, 3 pause, 4 resume.
-@Native<Void Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(symbol: 'loro_undo_control')
-external void loro_undo_control(Pointer<Void> u, int op, Pointer<Pointer<Uint8>> err);
+@Native<Void Function(Pointer<Void>, Uint32, Pointer<Pointer<Uint8>>)>(
+  symbol: 'loro_undo_control',
+)
+external void loro_undo_control(
+  Pointer<Void> u,
+  int op,
+  Pointer<Pointer<Uint8>> err,
+);
 
 /// Allocates `len` zeroed bytes that the caller fills with input data.
 @Native<Pointer<Uint8> Function(Uint32)>(symbol: 'loro_alloc')
@@ -639,26 +1947,49 @@ external void loro_dealloc(Pointer<Uint8> ptr, int len);
 external void loro_buf_free(Pointer<Uint8> ptr);
 
 final loro_container_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_container_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_container_free,
+    ).cast(),
+  ),
 );
 
 final loro_doc_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_doc_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_doc_free,
+    ).cast(),
+  ),
 );
 
 final loro_ephemeral_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_ephemeral_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_ephemeral_free,
+    ).cast(),
+  ),
 );
 
 final loro_subscription_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_subscription_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_subscription_free,
+    ).cast(),
+  ),
 );
 
 final loro_diff_batch_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_diff_batch_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_diff_batch_free,
+    ).cast(),
+  ),
 );
 
 final loro_undo_free_finalizer = LoroFinalizer._(
-  NativeFinalizer(Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(loro_undo_free).cast()),
+  NativeFinalizer(
+    Native.addressOf<NativeFunction<Void Function(Pointer<Void>)>>(
+      loro_undo_free,
+    ).cast(),
+  ),
 );
-

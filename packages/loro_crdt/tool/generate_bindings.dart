@@ -45,6 +45,7 @@ void main(List<String> args) {
     _webOut: _web(functions),
     _exportsOut: _exports(functions),
   };
+  _formatDartOutputs(outputs);
 
   var stale = false;
   for (final MapEntry(key: path, value: content) in outputs.entries) {
@@ -60,6 +61,31 @@ void main(List<String> args) {
   }
   if (stale) exit(1);
   stdout.writeln('${functions.length} functions');
+}
+
+/// Runs `dart format` over the generated Dart sources (pub.dev scores
+/// formatting). Files are formatted in `.dart_tool/` inside this package so
+/// the package's language version picks the formatter style.
+void _formatDartOutputs(Map<String, String> outputs) {
+  final dir = Directory('.dart_tool/loro_codegen')..createSync(recursive: true);
+  final paths = <String, File>{};
+  outputs.forEach((path, content) {
+    if (!path.endsWith('.dart')) return;
+    final f = File('${dir.path}/${path.split('/').last}')
+      ..writeAsStringSync(content);
+    paths[path] = f;
+  });
+  final result = Process.runSync('dart', [
+    'format',
+    ...paths.values.map((f) => f.path),
+  ]);
+  if (result.exitCode != 0) {
+    stderr
+      ..writeln('dart format failed:')
+      ..writeln(result.stderr);
+    exit(1);
+  }
+  paths.forEach((path, f) => outputs[path] = f.readAsStringSync());
 }
 
 class _Type {
