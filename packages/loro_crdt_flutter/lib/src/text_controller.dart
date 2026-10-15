@@ -21,6 +21,8 @@ import 'package:loro_crdt/loro_crdt.dart';
 /// Pass [attributeStyle] to render Loro rich-text marks (see
 /// [LoroText.mark]) inside the field.
 class LoroTextEditingController extends TextEditingController {
+  /// Binds a new controller to [loroText], which must be attached to a
+  /// [LoroDoc]. Commits the document's pending edits.
   LoroTextEditingController(
     this.loroText, {
     this.commitOrigin = defaultCommitOrigin,
@@ -47,6 +49,7 @@ class LoroTextEditingController extends TextEditingController {
   /// The origin used for commits made by controllers.
   static const defaultCommitOrigin = 'loro_crdt_flutter';
 
+  /// The text the field is bound to.
   final LoroText loroText;
 
   /// The origin passed to [LoroDoc.commit] for local edits. Exclude it from
@@ -179,6 +182,7 @@ class LoroTextEditingController extends TextEditingController {
 /// A single replacement turning one string into another.
 @immutable
 class TextSplice {
+  /// Replaces [deleteCount] code units at [start] with [insert].
   const TextSplice(this.start, this.deleteCount, this.insert);
 
   /// The smallest splice turning [from] into [to] (common prefix and suffix
@@ -206,8 +210,13 @@ class TextSplice {
     return TextSplice(start, endFrom - start, to.substring(start, endTo));
   }
 
+  /// Where the replacement starts, in UTF-16 code units.
   final int start;
+
+  /// The number of UTF-16 code units removed at [start].
   final int deleteCount;
+
+  /// The text inserted at [start].
   final String insert;
 
   @override

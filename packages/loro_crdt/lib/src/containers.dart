@@ -30,6 +30,7 @@ sealed class LoroContainer extends NativeObject {
   static LoroContainer fromAddress(ContainerType type, int address) =>
       fromHandle(type, Pointer<Void>.fromAddress(address));
 
+  /// Wraps a native container handle of [type]; the result owns the handle.
   static LoroContainer fromHandle(ContainerType type, Pointer<Void> handle) =>
       switch (type) {
         ContainerType.text => LoroText._(handle),
@@ -55,10 +56,12 @@ sealed class LoroContainer extends NativeObject {
     return h;
   }
 
+  /// The id of this container, e.g. for [LoroDoc.getContainer].
   ContainerId get id => ContainerId.parse(
     Runtime.reader(b.loro_container_id(handle, _err)).str(),
   );
 
+  /// The kind of container.
   ContainerType get type;
 
   /// Whether the container is part of a document.
@@ -154,12 +157,20 @@ final class LoroText extends LoroContainer {
   @override
   ContainerType get type => ContainerType.text;
 
+  /// Inserts [text] at [index], measured in [unit].
+  ///
+  /// Throws a [LoroException] if [index] is out of bounds (`OutOfBound`) or
+  /// falls inside a character (e.g. between the two halves of an emoji).
   void insert(int index, String text, {TextUnit unit = TextUnit.utf16}) =>
       _withStr(
         text,
         (p, n) => b.loro_text_insert(handle, index, unit.index, p, n, _err),
       );
 
+  /// Deletes [length] units starting at [index], both measured in [unit].
+  ///
+  /// Throws a [LoroException] if the range is out of bounds or splits a
+  /// character.
   void delete(int index, int length, {TextUnit unit = TextUnit.utf16}) {
     b.loro_text_delete(handle, index, length, unit.index, _err);
     Runtime.check();
@@ -198,14 +209,17 @@ final class LoroText extends LoroContainer {
   /// Length in UTF-16 code units.
   int get length => lengthIn(TextUnit.utf16);
 
+  /// Length measured in [unit].
   int lengthIn(TextUnit unit) {
     final n = b.loro_text_len(handle, unit.index, _err);
     Runtime.check();
     return n;
   }
 
+  /// Whether the text is empty.
   bool get isEmpty => length == 0;
 
+  /// Whether the text is not empty.
   bool get isNotEmpty => !isEmpty;
 
   /// Replaces the whole content with [text], recording the minimal set of
@@ -292,7 +306,8 @@ final class LoroText extends LoroContainer {
       Runtime.reader(b.loro_text_get_richtext_value(handle, _err)).value();
 
   /// A stable cursor at UTF-16 [index]; resolve it with
-  /// `LoroDoc.getCursorPos`.
+  /// [LoroDoc.getCursorPos]. An [index] at or past the end gives a cursor
+  /// that stays at the end. Returns `null` if the text is detached.
   Cursor? getCursor(int index, {CursorSide side = CursorSide.middle}) =>
       Runtime.reader(
         b.loro_text_get_cursor(handle, index, side.value, _err),
@@ -344,11 +359,13 @@ final class LoroMap extends LoroContainer {
     Runtime.check();
   }
 
+  /// Same as [set].
   void operator []=(String key, Object? value) => set(key, value);
 
   /// The value or child container at [key], or `null` if absent.
   Object? get(String key) => _orNull(_get(key));
 
+  /// Same as [get].
   Object? operator [](String key) => get(key);
 
   Object? _get(String key) {
@@ -358,24 +375,30 @@ final class LoroMap extends LoroContainer {
     ).valueOrContainer();
   }
 
+  /// Whether [key] holds a value or child container.
   bool containsKey(String key) => !identical(_get(key), absent);
 
+  /// Removes [key]; does nothing if it is absent.
   void delete(String key) =>
       _withStr(key, (p, n) => b.loro_map_delete(handle, p, n, _err));
 
+  /// Removes every key.
   void clear() {
     b.loro_map_clear(handle, _err);
     Runtime.check();
   }
 
+  /// The number of keys.
   int get length {
     final n = b.loro_map_len(handle, _err);
     Runtime.check();
     return n;
   }
 
+  /// Whether the map has no keys.
   bool get isEmpty => length == 0;
 
+  /// Whether the map has at least one key.
   bool get isNotEmpty => !isEmpty;
 
   /// The keys in sorted order.
@@ -393,6 +416,7 @@ final class LoroMap extends LoroContainer {
     return m;
   }
 
+  /// The values sorted by key; child containers are [LoroContainer]s.
   List<Object?> get values => entries.values.toList();
 
   /// Inserts the detached [child] at [key] and returns the attached
@@ -443,18 +467,23 @@ final class LoroMap extends LoroContainer {
 
 /// Operations shared by [LoroList] and [LoroMovableList].
 base mixin _ListOps on LoroContainer {
+  /// Inserts a plain [value] (see [LoroMap.set] for the allowed types) at
+  /// [index]. Throws a [LoroException] if [index] is out of bounds.
   void insert(int index, Object? value) {
     final v = encodeValue(value);
     b.loro_list_insert(handle, index, Runtime.input(v), v.length, _err);
     Runtime.check();
   }
 
+  /// Appends a plain [value].
   void push(Object? value) {
     final v = encodeValue(value);
     b.loro_list_push(handle, Runtime.input(v), v.length, _err);
     Runtime.check();
   }
 
+  /// Deletes [count] elements starting at [index]. Throws a [LoroException]
+  /// if the range is out of bounds.
   void delete(int index, int count) {
     b.loro_list_delete(handle, index, count, _err);
     Runtime.check();
@@ -469,18 +498,23 @@ base mixin _ListOps on LoroContainer {
     Runtime.reader(b.loro_list_get(handle, index, _err)).valueOrContainer(),
   );
 
+  /// Same as [get].
   Object? operator [](int index) => get(index);
 
+  /// The number of elements.
   int get length {
     final n = b.loro_list_len(handle, _err);
     Runtime.check();
     return n;
   }
 
+  /// Whether the list has no elements.
   bool get isEmpty => length == 0;
 
+  /// Whether the list has at least one element.
   bool get isNotEmpty => !isEmpty;
 
+  /// Removes every element.
   void clear() {
     b.loro_list_clear(handle, _err);
     Runtime.check();
@@ -505,7 +539,8 @@ base mixin _ListOps on LoroContainer {
     return LoroContainer.fromHandle(child.type, h) as T;
   }
 
-  /// A stable cursor at [index]; resolve it with `LoroDoc.getCursorPos`.
+  /// A stable cursor at [index]; resolve it with [LoroDoc.getCursorPos].
+  /// Returns `null` if the list is detached.
   Cursor? getCursor(int index, {CursorSide side = CursorSide.middle}) =>
       Runtime.reader(
         b.loro_list_get_cursor(handle, index, side.value, _err),
@@ -549,6 +584,7 @@ final class LoroMovableList extends LoroContainer with _ListOps {
     Runtime.check();
   }
 
+  /// Same as [set].
   void operator []=(int index, Object? value) => set(index, value);
 
   /// Replaces the element at [index] with the detached [child] and returns
@@ -570,10 +606,13 @@ final class LoroMovableList extends LoroContainer with _ListOps {
     Runtime.check();
   }
 
+  /// The peer that inserted the element at [index].
   PeerId? getCreatorAt(int index) => _peerAt(index, 0);
 
+  /// The peer that last moved the element at [index].
   PeerId? getLastMoverAt(int index) => _peerAt(index, 1);
 
+  /// The peer that last set the value at [index].
   PeerId? getLastEditorAt(int index) => _peerAt(index, 2);
 
   PeerId? _peerAt(int index, int which) => Runtime.reader(
@@ -713,6 +752,8 @@ final class LoroTree extends LoroContainer {
     return r != 0;
   }
 
+  /// Whether [target] was deleted. Throws a [LoroException] if it does not
+  /// exist (see [contains]).
   bool isNodeDeleted(TreeId target) {
     final args = _ids((w) => w.treeId(target));
     final r = b.loro_tree_is_node_deleted(
@@ -797,6 +838,7 @@ final class LoroTree extends LoroContainer {
     Runtime.check();
   }
 
+  /// Whether children are ordered, see [enableFractionalIndex].
   bool get isFractionalIndexEnabled {
     final r = b.loro_tree_is_fractional_index_enabled(handle, _err);
     Runtime.check();
@@ -813,7 +855,10 @@ final class LoroTree extends LoroContainer {
 final class LoroTreeNode {
   LoroTreeNode._(this.tree, this.id);
 
+  /// The tree the node belongs to.
   final LoroTree tree;
+
+  /// The node's id.
   final TreeId id;
 
   /// The node's metadata map.
@@ -827,10 +872,13 @@ final class LoroTreeNode {
   void move({LoroTreeNode? parent, int? index}) =>
       tree.move(id, parent: parent?.id, index: index);
 
+  /// Moves this node right after its new sibling [sibling].
   void moveAfter(LoroTreeNode sibling) => tree.moveAfter(id, sibling.id);
 
+  /// Moves this node right before its new sibling [sibling].
   void moveBefore(LoroTreeNode sibling) => tree.moveBefore(id, sibling.id);
 
+  /// Deletes this node and its descendants.
   void delete() => tree.delete(id);
 
   /// The parent node, `null` for a root (or a deleted node).
@@ -839,6 +887,7 @@ final class LoroTreeNode {
     return p == null ? null : LoroTreeNode._(tree, p);
   }
 
+  /// The child nodes in order.
   List<LoroTreeNode> children() => [
     for (final c in tree.children(id) ?? const <TreeId>[])
       LoroTreeNode._(tree, c),
@@ -852,8 +901,11 @@ final class LoroTreeNode {
     return i < 0 ? null : i;
   }
 
+  /// The fractional index among the siblings, see
+  /// [LoroTree.fractionalIndex].
   String? get fractionalIndex => tree.fractionalIndex(id);
 
+  /// Whether the node was deleted.
   bool get isDeleted => tree.isNodeDeleted(id);
 
   @override
@@ -869,11 +921,19 @@ final class LoroTreeNode {
 
 /// A tree node with its position, from [LoroTree.getNodes].
 final class TreeNodeInfo {
+  /// Creates node info; [LoroTree.getNodes] returns these.
   const TreeNodeInfo(this.id, this.parent, this.fractionalIndex, this.index);
 
+  /// The node.
   final TreeId id;
+
+  /// The node's parent.
   final TreeParent parent;
+
+  /// The node's sort key among its siblings, see [LoroTree.fractionalIndex].
   final String fractionalIndex;
+
+  /// The node's position among its siblings.
   final int index;
 
   @override
@@ -892,13 +952,16 @@ final class LoroCounter extends LoroContainer {
   @override
   ContainerType get type => ContainerType.counter;
 
+  /// Adds [by], which may be fractional or negative.
   void increment([num by = 1]) {
     b.loro_counter_increment(handle, by.toDouble(), _err);
     Runtime.check();
   }
 
+  /// Subtracts [by].
   void decrement([num by = 1]) => increment(-by);
 
+  /// The current value: the sum of every peer's increments.
   double get value {
     final v = b.loro_counter_value(handle, _err);
     Runtime.check();

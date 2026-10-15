@@ -199,6 +199,7 @@ final class LoroDoc extends NativeObject {
           )
           as LoroText;
 
+  /// The root map named [name], created on first use.
   LoroMap getMap(String name) =>
       LoroContainer.fromHandle(
             ContainerType.map,
@@ -206,6 +207,7 @@ final class LoroDoc extends NativeObject {
           )
           as LoroMap;
 
+  /// The root list named [name], created on first use.
   LoroList getList(String name) =>
       LoroContainer.fromHandle(
             ContainerType.list,
@@ -213,6 +215,7 @@ final class LoroDoc extends NativeObject {
           )
           as LoroList;
 
+  /// The root movable list named [name], created on first use.
   LoroMovableList getMovableList(String name) =>
       LoroContainer.fromHandle(
             ContainerType.movableList,
@@ -220,6 +223,7 @@ final class LoroDoc extends NativeObject {
           )
           as LoroMovableList;
 
+  /// The root tree named [name], created on first use.
   LoroTree getTree(String name) =>
       LoroContainer.fromHandle(
             ContainerType.tree,
@@ -227,6 +231,7 @@ final class LoroDoc extends NativeObject {
           )
           as LoroTree;
 
+  /// The root counter named [name], created on first use.
   LoroCounter getCounter(String name) =>
       LoroContainer.fromHandle(
             ContainerType.counter,
@@ -249,6 +254,8 @@ final class LoroDoc extends NativeObject {
     return v;
   }
 
+  /// Whether the container [id] exists. Root containers always exist; other
+  /// containers exist once an operation has created them.
   bool hasContainer(ContainerId id) {
     final s = utf8Bytes(id.toString());
     return _check2(
@@ -369,6 +376,7 @@ final class LoroDoc extends NativeObject {
     _check();
   }
 
+  /// Clears the message, origin and timestamp set for the next commit.
   void clearNextCommitOptions() {
     b.loro_doc_clear_next_commit_options(handle, _err);
     _check();
@@ -508,16 +516,22 @@ final class LoroDoc extends NativeObject {
   VersionVector get stateVersion =>
       Runtime.reader(b.loro_doc_state_vv(handle, _err)).versionVector();
 
-  /// For shallow documents, the version history starts at.
+  /// For shallow documents, the version their history starts at; empty
+  /// otherwise.
   VersionVector get shallowSinceVersion =>
       Runtime.reader(b.loro_doc_shallow_since_vv(handle, _err)).versionVector();
 
+  /// [oplogVersion] as frontiers: the latest known operations.
   Frontiers get oplogFrontiers =>
       Runtime.reader(b.loro_doc_oplog_frontiers(handle, _err)).frontiers();
 
+  /// [stateVersion] as frontiers: the version currently shown, older than
+  /// [oplogFrontiers] after a [checkout].
   Frontiers get stateFrontiers =>
       Runtime.reader(b.loro_doc_state_frontiers(handle, _err)).frontiers();
 
+  /// [shallowSinceVersion] as frontiers; empty if the document is not
+  /// shallow.
   Frontiers get shallowSinceFrontiers => Runtime.reader(
     b.loro_doc_shallow_since_frontiers(handle, _err),
   ).frontiers();
@@ -531,6 +545,7 @@ final class LoroDoc extends NativeObject {
     return r.opt(r.versionVector);
   }
 
+  /// Converts [version] to the equivalent frontiers.
   Frontiers versionToFrontiers(VersionVector version) {
     final v = encodeWith((w) => w.versionVector(version));
     return Runtime.reader(
@@ -590,6 +605,8 @@ final class LoroDoc extends NativeObject {
     _emit(null);
   }
 
+  /// Returns from a [checkout] to the latest version, applying everything
+  /// imported in the meantime. Same as [attach].
   void checkoutToLatest() {
     b.loro_doc_checkout_to_latest(handle, _err);
     _emit(null);
@@ -607,6 +624,8 @@ final class LoroDoc extends NativeObject {
     _emit(null);
   }
 
+  /// Whether the state is detached from the latest version, after
+  /// [checkout] or [detach].
   bool get isDetached => _check2(b.loro_doc_is_detached(handle, _err)) != 0;
 
   /// Creates new changes that bring the state back to [frontiers], keeping
@@ -747,11 +766,13 @@ final class LoroDoc extends NativeObject {
     _check();
   }
 
+  /// Frees the diff calculator cached by [checkout] (rebuilt on demand).
   void freeDiffCalculator() {
     b.loro_doc_free_diff_calculator(handle, _err);
     _check();
   }
 
+  /// Whether the history cache is built, see [freeHistoryCache].
   bool get hasHistoryCache =>
       _check2(b.loro_doc_has_history_cache(handle, _err)) != 0;
 
@@ -768,6 +789,7 @@ final class LoroDoc extends NativeObject {
 /// Converts between Dart [VersionVector]/[Frontiers] and the binary encodings
 /// used by other Loro bindings (e.g. `VersionVector.encode()` in JS).
 abstract final class VersionEncoding {
+  /// Encodes [vv] in Loro's binary version vector format.
   static Uint8List encodeVersion(VersionVector vv) {
     final data = encodeWith((w) => w.versionVector(vv));
     return Runtime.bytes(
@@ -775,10 +797,13 @@ abstract final class VersionEncoding {
     );
   }
 
+  /// Decodes a version vector encoded by [encodeVersion] or another Loro
+  /// binding.
   static VersionVector decodeVersion(Uint8List bytes) => Runtime.reader(
     b.loro_vv_decode(Runtime.input(bytes), bytes.length, _err),
   ).versionVector();
 
+  /// Encodes [f] in Loro's binary frontiers format.
   static Uint8List encodeFrontiers(Frontiers f) {
     final data = encodeWith((w) => w.frontiers(f));
     return Runtime.bytes(
@@ -786,6 +811,7 @@ abstract final class VersionEncoding {
     );
   }
 
+  /// Decodes frontiers encoded by [encodeFrontiers] or another Loro binding.
   static Frontiers decodeFrontiers(Uint8List bytes) => Runtime.reader(
     b.loro_frontiers_decode(Runtime.input(bytes), bytes.length, _err),
   ).frontiers();

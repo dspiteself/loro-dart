@@ -15,12 +15,25 @@ typedef PeerId = String;
 ///
 /// The order matches the codes used by the native library.
 enum ContainerType {
+  /// `LoroText`.
   text('Text'),
+
+  /// `LoroMap`.
   map('Map'),
+
+  /// `LoroList`.
   list('List'),
+
+  /// `LoroMovableList`.
   movableList('MovableList'),
+
+  /// `LoroTree`.
   tree('Tree'),
+
+  /// `LoroCounter`.
   counter('Counter'),
+
+  /// A type this version of Loro does not know (`LoroUnknown`).
   unknown('Unknown');
 
   const ContainerType(this.loroName);
@@ -28,6 +41,8 @@ enum ContainerType {
   /// The name Loro uses in container ids, e.g. `Text` or `MovableList`.
   final String loroName;
 
+  /// The type whose [loroName] is [name]. Names starting with `Unknown` give
+  /// [unknown]; anything else throws a [FormatException].
   static ContainerType fromLoroName(String name) {
     for (final t in values) {
       if (t.loroName == name) return t;
@@ -42,6 +57,7 @@ int _comparePeers(PeerId a, PeerId b) =>
 
 /// A unique operation id: the [counter]-th operation created by [peer].
 final class Id implements Comparable<Id> {
+  /// The [counter]-th operation of [peer].
   const Id(this.peer, this.counter);
 
   /// Parses Loro's `counter@peer` notation.
@@ -51,7 +67,10 @@ final class Id implements Comparable<Id> {
     return Id(s.substring(at + 1), int.parse(s.substring(0, at)));
   }
 
+  /// The peer that created the operation.
   final PeerId peer;
+
+  /// The operation's index among the operations of [peer], from 0.
   final int counter;
 
   @override
@@ -71,8 +90,10 @@ final class Id implements Comparable<Id> {
   String toString() => '$counter@$peer';
 }
 
-/// The id of a node in a [LoroTree](../containers/LoroTree-class.html).
+/// The id of a node in a `LoroTree`: the [Id] of the operation that created
+/// the node.
 final class TreeId {
+  /// The node created by the [counter]-th operation of [peer].
   const TreeId(this.peer, this.counter);
 
   /// Parses Loro's `counter@peer` notation.
@@ -81,7 +102,10 @@ final class TreeId {
     return TreeId(id.peer, id.counter);
   }
 
+  /// The peer that created the node.
   final PeerId peer;
+
+  /// The counter of the operation that created the node.
   final int counter;
 
   @override
@@ -114,19 +138,25 @@ enum TreeParentKind {
 final class TreeParent {
   const TreeParent._(this.kind, this.node);
 
+  /// The parent of a root node.
   const TreeParent.root() : this._(TreeParentKind.root, null);
 
+  /// The parent of a deleted node.
   const TreeParent.deleted() : this._(TreeParentKind.deleted, null);
 
+  /// The parent of a node that does not exist.
   const TreeParent.nonexistent() : this._(TreeParentKind.nonexistent, null);
 
+  /// The parent of a child of [node].
   const TreeParent.ofNode(TreeId node) : this._(TreeParentKind.node, node);
 
+  /// Where the node lives.
   final TreeParentKind kind;
 
   /// The parent node when [kind] is [TreeParentKind.node].
   final TreeId? node;
 
+  /// Whether the node is a root.
   bool get isRoot => kind == TreeParentKind.root;
 
   @override
@@ -156,6 +186,8 @@ final class ContainerId {
   factory ContainerId.normal(Id id, ContainerType type) =>
       ContainerId._('cid:$id:${type.loroName}', type, null, id);
 
+  /// Parses the string form returned by [toString]. Throws a
+  /// [FormatException] if [s] is not a container id.
   factory ContainerId.parse(String s) {
     if (!s.startsWith('cid:')) {
       throw FormatException('Invalid container id "$s"');
@@ -172,6 +204,7 @@ final class ContainerId {
 
   final String _repr;
 
+  /// The kind of container.
   final ContainerType type;
 
   /// The name of a root container, `null` otherwise.
@@ -180,6 +213,7 @@ final class ContainerId {
   /// The creating operation of a non-root container, `null` for roots.
   final Id? id;
 
+  /// Whether this is a root container, which has a [name].
   bool get isRoot => name != null;
 
   @override
@@ -197,8 +231,10 @@ final class ContainerId {
 /// the ids of the latest operations, of which no other included operation is
 /// a descendant.
 final class Frontiers extends UnmodifiableListView<Id> {
+  /// The frontiers made of [ids].
   Frontiers(Iterable<Id> ids) : super(List.unmodifiable(ids));
 
+  /// The version before any operation.
   Frontiers.empty() : super(const []);
 
   @override
@@ -218,8 +254,11 @@ final class Frontiers extends UnmodifiableListView<Id> {
 /// A version expressed as, for every peer, the number of its operations
 /// that are included (i.e. the next counter expected from that peer).
 final class VersionVector extends UnmodifiableMapView<PeerId, int> {
+  /// The version that includes, for each peer in [entries], that many of its
+  /// operations.
   VersionVector(Map<PeerId, int> entries) : super(Map.unmodifiable(entries));
 
+  /// The version before any operation.
   VersionVector.empty() : super(const {});
 
   /// Compares two versions. Returns a negative number if this version is
@@ -262,10 +301,16 @@ final class VersionVector extends UnmodifiableMapView<PeerId, int> {
 
 /// The operations `[start, end)` of [peer].
 final class IdSpan {
+  /// The operations `[start, end)` of [peer].
   const IdSpan(this.peer, this.start, this.end);
 
+  /// The peer whose operations are included.
   final PeerId peer;
+
+  /// The counter of the first operation.
   final int start;
+
+  /// The counter after the last operation (exclusive).
   final int end;
 
   @override
@@ -285,6 +330,7 @@ final class IdSpan {
 /// Which operations an import applied, and which wait for missing
 /// dependencies.
 final class ImportStatus {
+  /// Creates a status; `LoroDoc.import` returns these.
   const ImportStatus(this.success, this.pending);
 
   /// Imported spans, per peer.
@@ -300,6 +346,7 @@ final class ImportStatus {
 
 /// Metadata of a change: a run of consecutive operations by one peer.
 final class ChangeMeta {
+  /// Creates change metadata; `LoroDoc.getChange` returns these.
   const ChangeMeta({
     required this.lamport,
     required this.id,
@@ -362,14 +409,23 @@ final class ExportMode {
   factory ExportMode.snapshotAt(Frontiers frontiers) =>
       ExportMode._(5, null, null, frontiers);
 
+  /// The code identifying the mode in the native library.
   final int code;
+
+  /// The starting version of [ExportMode.updates].
   final VersionVector? from;
+
+  /// The spans of [ExportMode.updatesInRange].
   final List<IdSpan>? spans;
+
+  /// The version of [ExportMode.shallowSnapshot], [ExportMode.stateOnly] and
+  /// [ExportMode.snapshotAt].
   final Frontiers? frontiers;
 }
 
 /// Metadata read from an exported blob without importing it.
 final class ImportBlobMetadata {
+  /// Creates blob metadata; `LoroDoc.decodeImportBlobMeta` returns these.
   const ImportBlobMetadata({
     required this.mode,
     required this.partialStartVersion,
@@ -388,11 +444,23 @@ final class ImportBlobMetadata {
 
   /// Version vector of the end of the included operations.
   final VersionVector partialEndVersion;
+
+  /// Timestamp (Unix seconds) of the earliest included change, 0 if
+  /// timestamps were not recorded.
   final int startTimestamp;
+
+  /// The version the included operations build on: their dependencies
+  /// that the blob does not contain. Empty for a full snapshot.
   final Frontiers startFrontiers;
+
+  /// Timestamp (Unix seconds) of the latest included change, 0 if
+  /// timestamps were not recorded.
   final int endTimestamp;
+
+  /// Number of changes in the blob.
   final int changeCount;
 
+  /// Whether the blob is a snapshot (of any kind) rather than updates.
   bool get isSnapshot => mode.contains('Snapshot');
 }
 
@@ -425,14 +493,21 @@ enum ExpandType {
 
 /// Which side of the element at a position a [Cursor] sticks to.
 enum CursorSide {
+  /// The left side of the element.
   left(-1),
+
+  /// The element itself. The default.
   middle(0),
+
+  /// The right side of the element.
   right(1);
 
   const CursorSide(this.value);
 
+  /// The code Loro uses for this side: -1, 0 or 1.
   final int value;
 
+  /// The side with code [v], [middle] if [v] is unknown.
   static CursorSide fromValue(int v) =>
       values.firstWhere((s) => s.value == v, orElse: () => middle);
 }
@@ -454,11 +529,14 @@ final class Cursor {
   /// The container the cursor points into.
   final ContainerId container;
 
+  /// Which side of [id] the cursor sticks to.
   final CursorSide side;
 
-  /// The element the cursor is attached to, `null` for an empty container.
+  /// The element the cursor is attached to, `null` for an empty container
+  /// or the end of the container.
   final Id? id;
 
+  /// Serializes the cursor; restore it with [Cursor.decode].
   Uint8List encode() => Uint8List.fromList(_bytes);
 
   @override
@@ -487,11 +565,13 @@ Cursor makeCursor(
 
 /// The current index of a [Cursor].
 final class CursorPosition {
+  /// Creates a position; `LoroDoc.getCursorPos` returns these.
   const CursorPosition(this.offset, this.side, this.update);
 
   /// The index in the container (UTF-16 code units for text).
   final int offset;
 
+  /// Which side of the element at [offset] the cursor sticks to.
   final CursorSide side;
 
   /// A fresher cursor to store instead of the old one, if Loro produced one

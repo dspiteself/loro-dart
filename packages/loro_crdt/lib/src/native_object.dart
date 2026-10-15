@@ -30,6 +30,7 @@ abstract class NativeObject implements Finalizable {
     return h;
   }
 
+  /// Whether [dispose] was called.
   bool get isDisposed => _handle.address == 0;
 
   /// Releases the native resources now instead of waiting for garbage
