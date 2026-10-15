@@ -17,14 +17,19 @@ sealed class TextDelta {
     throw FormatException('Not a text delta: $json');
   }
 
+  /// The Quill-style JSON form, e.g. `{'insert': 'Hi', 'attributes': {...}}`.
   Map<String, Object?> toJson();
 }
 
 /// Inserts [text] with optional style [attributes].
 final class TextInsert extends TextDelta {
+  /// Inserts [text], styled with [attributes] if given.
   const TextInsert(this.text, {this.attributes});
 
+  /// The inserted text.
   final String text;
+
+  /// The styles of the inserted text, e.g. `{'bold': true}`, or `null`.
   final Map<String, Object?>? attributes;
 
   @override
@@ -48,8 +53,10 @@ final class TextInsert extends TextDelta {
 
 /// Deletes [count] code units.
 final class TextDelete extends TextDelta {
+  /// Deletes [count] code units.
   const TextDelete(this.count);
 
+  /// The number of UTF-16 code units deleted.
   final int count;
 
   @override
@@ -68,9 +75,13 @@ final class TextDelete extends TextDelta {
 /// Keeps [count] code units, optionally changing their style [attributes]
 /// (a `null` attribute value removes that style).
 final class TextRetain extends TextDelta {
+  /// Keeps [count] code units, applying [attributes] if given.
   const TextRetain(this.count, {this.attributes});
 
+  /// The number of UTF-16 code units kept.
   final int count;
+
+  /// Style changes for the kept text, or `null` to leave its style as is.
   final Map<String, Object?>? attributes;
 
   @override
@@ -100,9 +111,13 @@ sealed class ListDelta {
 /// Inserts [values]: plain values or `LoroContainer`s. [isMove] is set when
 /// the values were moved here within a `LoroMovableList`.
 final class ListInsert extends ListDelta {
+  /// Inserts [values].
   const ListInsert(this.values, {this.isMove = false});
 
+  /// The inserted values; child containers are `LoroContainer`s.
   final List<Object?> values;
+
+  /// Whether the values were moved here rather than newly inserted.
   final bool isMove;
 
   @override
@@ -120,8 +135,10 @@ final class ListInsert extends ListDelta {
 
 /// Deletes [count] elements.
 final class ListDelete extends ListDelta {
+  /// Deletes [count] elements.
   const ListDelete(this.count);
 
+  /// The number of elements deleted.
   final int count;
 
   @override
@@ -136,8 +153,10 @@ final class ListDelete extends ListDelta {
 
 /// Skips [count] unchanged elements.
 final class ListRetain extends ListDelta {
+  /// Skips [count] elements.
   const ListRetain(this.count);
 
+  /// The number of elements skipped.
   final int count;
 
   @override

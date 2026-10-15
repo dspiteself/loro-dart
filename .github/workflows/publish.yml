@@ -27,8 +27,6 @@ jobs:
       - name: Publish
         run: |
           case "$GITHUB_REF_NAME" in
-            loro_crdt_flutter-v*) dir=packages/loro_crdt_flutter ;;
-            loro_crdt-v*)         dir=packages/loro_crdt ;;
+            loro_crdt_flutter-v*) cd packages/loro_crdt_flutter && flutter pub publish --force ;;
+            loro_crdt-v*)         cd packages/loro_crdt && dart pub publish --force ;;
           esac
-          cd "$dir"
-          dart pub publish --force

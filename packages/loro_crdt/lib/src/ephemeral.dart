@@ -11,7 +11,7 @@ final _err = Runtime.errSlot;
 
 /// Short-lived shared state such as cursors, selections or "who is online".
 ///
-/// Unlike a [LoroDoc](../doc/LoroDoc-class.html), an ephemeral store keeps
+/// Unlike a `LoroDoc`, an ephemeral store keeps
 /// no history: each key holds the latest value (last writer wins) and entries
 /// expire after [timeout] without updates. Exchange updates with
 /// [encode]/[encodeAll] and [apply], typically by sending everything from
@@ -21,6 +21,8 @@ final _err = Runtime.errSlot;
 /// write to a key that is not newer than the one they hold: two writes to
 /// the same key within the same millisecond may not both reach other peers.
 final class EphemeralStore extends NativeObject {
+  /// Creates an empty store whose entries expire after [timeout] without
+  /// updates.
   EphemeralStore({Duration timeout = const Duration(seconds: 30)})
     : super(
         _create(timeout),
@@ -48,6 +50,7 @@ final class EphemeralStore extends NativeObject {
     _emit();
   }
 
+  /// Same as [set].
   void operator []=(String key, Object? value) => set(key, value);
 
   /// The value of [key], or `null`.
@@ -59,8 +62,10 @@ final class EphemeralStore extends NativeObject {
     return identical(v, absent) ? null : v;
   }
 
+  /// Same as [get].
   Object? operator [](String key) => get(key);
 
+  /// Removes [key].
   void delete(String key) {
     final k = utf8Bytes(key);
     b.loro_ephemeral_delete(handle, Runtime.input(k), k.length, _err);

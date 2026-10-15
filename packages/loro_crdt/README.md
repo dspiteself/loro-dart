@@ -104,8 +104,9 @@ are never undone, but undo steps are adjusted to apply on top of them.
 or online status, with expiry and its own update stream.
 
 **Cursors.** `text.getCursor(index)` returns a `Cursor` that stays attached
-to the same character under concurrent edits; resolve it with
-`doc.getCursorPos(cursor)`. Cursors serialize with `encode()`.
+to the same character under concurrent edits (or `null` if the text is
+detached); resolve it with `doc.getCursorPos(cursor)`. Cursors serialize
+with `encode()`.
 
 ## Web setup
 
@@ -140,9 +141,10 @@ Plain Dart web apps: serve `lib/src/web/loro_crdt_ffi.js` and
 
 This package is MIT licensed. The native library it builds, and the prebuilt
 web module it ships, include Loro and other Rust crates under permissive
-licenses (MIT, Apache-2.0, MPL-2.0 for the `im` crates), plus the Emscripten
-runtime on the web. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for
-the full list and texts to include in your app's notices.
+licenses (MIT, Apache-2.0, MPL-2.0 for `im` and its dependencies `bitmaps`
+and `sized-chunks`), plus the Emscripten runtime on the web. See
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the full list and texts
+to include in your app's notices.
 
 ## How it works
 

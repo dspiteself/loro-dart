@@ -13,6 +13,8 @@ final _err = Runtime.errSlot;
 /// from other peers are never undone, but recorded steps are transformed so
 /// they still apply cleanly on top of them.
 final class UndoManager extends NativeObject {
+  /// Records local edits of [doc]. See [maxUndoSteps], [mergeInterval] and
+  /// [addExcludeOriginPrefix] for the options.
   UndoManager(
     LoroDoc doc, {
     int? maxUndoSteps,
@@ -54,14 +56,19 @@ final class UndoManager extends NativeObject {
     return r;
   }
 
+  /// Whether there is a step to undo.
   bool get canUndo => _query(0) != 0;
 
+  /// Whether there is a step to redo.
   bool get canRedo => _query(1) != 0;
 
+  /// The number of steps on the undo stack.
   int get undoCount => _query(2);
 
+  /// The number of steps on the redo stack.
   int get redoCount => _query(3);
 
+  /// Whether recording is paused, see [pause].
   bool get isPaused => _query(4) != 0;
 
   /// Records the pending local changes as an undo step now rather than at
@@ -71,6 +78,7 @@ final class UndoManager extends NativeObject {
     Runtime.check();
   }
 
+  /// The maximum number of undo steps kept; older steps are dropped.
   set maxUndoSteps(int steps) {
     b.loro_undo_set_max_undo_steps(handle, steps, _err);
     Runtime.check();
@@ -109,10 +117,12 @@ final class UndoManager extends NativeObject {
   /// Groups every commit until [groupEnd] into a single undo step.
   void groupStart() => _control(1);
 
+  /// Ends the group started by [groupStart].
   void groupEnd() => _control(2);
 
   /// Stops recording until [resume].
   void pause() => _control(3);
 
+  /// Resumes recording after [pause].
   void resume() => _control(4);
 }
