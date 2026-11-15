@@ -7,7 +7,7 @@ description = "C ABI over the loro crate, consumed by the loro_crdt Dart package
 license = "MIT"
 
 [lib]
-crate-type = ["staticlib", "cdylib"]
+crate-type = ["cdylib"]
 
 [dependencies]
 loro = { version = "=1.16.2", features = ["counter", "jsonpath"] }

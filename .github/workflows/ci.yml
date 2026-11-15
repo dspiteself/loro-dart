@@ -97,3 +97,19 @@ jobs:
       - run: flutter pub get
       - working-directory: packages/loro_crdt_flutter/example
         run: flutter build ${{ matrix.target }} ${{ matrix.target == 'ios' && '--no-codesign' || '' }}
+      # The hook links with the NDK in ANDROID_NDK_HOME when set; NDKs before r28
+      # align on 4 KB pages; native_toolchain_rust 1.1.0+ asks the linker for 16 KB.
+      - if: matrix.target == 'apk'
+        name: Check 16 KB page alignment of the Android libraries
+        working-directory: packages/loro_crdt_flutter/example
+        run: |
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+          unzip -o -q build/app/outputs/flutter-apk/app-release.apk 'lib/*/libloro_crdt_ffi.so' -d "$RUNNER_TEMP/apk"
+          for lib in "$RUNNER_TEMP"/apk/lib/{arm64-v8a,x86_64}/libloro_crdt_ffi.so; do
+            alignments=$(readelf -lW "$lib" | awk '$1 == "LOAD" { print $NF }')
+            echo "$lib:" $alignments
+            [ -n "$alignments" ]
+            for alignment in $alignments; do
+              (( alignment >= 0x4000 ))
+            done
+          done
