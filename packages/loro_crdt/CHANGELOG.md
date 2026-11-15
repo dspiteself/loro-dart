@@ -1,3 +1,8 @@
+## Unreleased
+
+- Update Loro to 1.17.1. Exporting JSON updates now reports an unreadable
+  history as a `LoroException` instead of panicking.
+
 ## 0.1.0
 
 - Initial release: bindings for Loro 1.16.2 on Android, iOS, macOS, Windows,

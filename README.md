@@ -1,6 +1,6 @@
 # Loro for Dart and Flutter
 
-Bindings for the [Loro](https://loro.dev) CRDT library (1.16.2) on every
+Bindings for the [Loro](https://loro.dev) CRDT library (1.17.1) on every
 platform Dart runs on.
 
 | Package | What it is |
@@ -41,7 +41,7 @@ Chrome. Making that work required a few constraints:
   see `packages/loro_crdt/native/web/`.
 - **Async init.** The module must be loaded with `await initLoro()`
   (`ensureLoroInitialized()` in Flutter) before first use.
-- **Size.** The module is about 3.6 MB of wasm (1.3 MB gzipped) plus 90 KB of
+- **Size.** The module is about 4.0 MB of wasm (1.4 MB gzipped) plus 90 KB of
   JavaScript glue.
 - **One wasm_ffi module per app.** `wasm_ffi` binds pointers to the memory
   of the first module it loads. An app that loads another `wasm_ffi` module
