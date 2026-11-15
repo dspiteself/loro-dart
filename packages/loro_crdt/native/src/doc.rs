@@ -540,7 +540,7 @@ pub unsafe extern "C" fn loro_doc_export_json_updates(
         let mut r = reader(range_ptr, range_len);
         let start = r.version_vector()?;
         let end = r.version_vector()?;
-        let json = doc(d)?.export_json_updates(&start, &end);
+        let json = doc(d)?.export_json_updates(&start, &end)?;
         let s = serde_json::to_string(&json).map_err(|e| FfiError::new("JsonError", e.to_string()))?;
         Ok(encode(|w| w.str(&s)))
     })

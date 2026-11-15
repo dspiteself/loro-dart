@@ -1,6 +1,6 @@
 # loro_crdt
 
-Dart bindings for [Loro](https://loro.dev) 1.16.2, a CRDT library for
+Dart bindings for [Loro](https://loro.dev) 1.17.1, a CRDT library for
 local-first and collaborative apps: rich text, maps, lists, movable lists,
 trees and counters that merge concurrent edits from any number of peers,
 with full history, time travel and undo.
